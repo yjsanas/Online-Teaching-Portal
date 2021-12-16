@@ -1,0 +1,81 @@
+{% extends '../tbase.html' %}
+{% block contentarea %}
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">                    
+<link type="text/css" media="print" rel="stylesheet" href="https://cdn.jotfor.ms/css/printForm.css?3.3.21910" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5f6c4d5f89fb4a374f76b581"/>
+
+<style type="text/css" id="form-designer-style">
+
+.form-all{
+    margin: 20px auto !important;
+    max-width: none !important;
+
+}
+    /* Injected CSS Code */
+.form-label.form-label-auto {
+        
+        display: inline-block;
+        float: left;
+        text-align: left;
+      
+      }
+    /* Injected CSS Code */
+</style>
+
+<form class="jotform-form" action="taddcourse.html" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="on">
+ {% csrf_token %}
+  <div role="main" class="form-all">
+    <ul class="form-section page-section">
+      <li id="cid_32" class="form-input-wide" data-type="control_head">
+        <div class="form-header-group  header-large">
+          <div class="header-text httal htvam">
+            <h1 id="header_32" class="form-header" data-component="header">
+              Add Course
+            </h1>
+          </div>
+        </div>
+      </li>
+      <li class="form-line jf-required" data-type="control_textbox" id="id_3">
+        <label class="form-label form-label-left form-label-auto" id="label_3" for="input_3">
+          Course Title
+          <span class="form-required">
+            *
+          </span>
+        </label>
+        <div id="cid_3" class="form-input jf-required" data-layout="half">
+          <input type="text" id="input_3" name="coursename" data-type="input-textbox" class="form-textbox " style="width:310px" size="310" value="" placeholder=" " data-component="textbox" aria-labelledby="label_3" required="" />
+        </div>
+      </li>
+     
+      <li class="form-line" data-type="control_textarea" id="id_6">
+        <label class="form-label form-label-left form-label-auto" id="label_6" for="input_6"> Course description </label>
+        <div id="cid_6" class="form-input" data-layout="full">
+          <textarea id="input_6" class="form-textarea" name="coursedescription" style="width:648px;height:163px" data-component="textarea" aria-labelledby="label_6"></textarea>
+        </div>
+      </li>
+      
+      <li class="form-line" data-type="control_button" id="id_19">
+        <div id="cid_19" class="form-input-wide" data-layout="full">
+          <div data-align="left" class="form-buttons-wrapper form-buttons-left   jsTest-button-wrapperField">
+            <button id="input_19" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">
+             Add Course
+            </button>
+          </div>
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+  
+  
+  
+</form>
+
+                             </div>
+
+                </main>
+                
+            
+{% endblock  %}

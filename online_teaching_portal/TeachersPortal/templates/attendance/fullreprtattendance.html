@@ -1,0 +1,54 @@
+{% extends '../tbase.html' %}
+{% block contentarea %}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      
+      {% for cname  in courses  %}            
+        <th scope="col" colspan="2" > Course Name: {{ cname.cname }} </th>
+        <th scope="col" colspan="2" > Course ID: {{ cname.cid }} </th>        
+      {% endfor %}
+    </tr>
+    <tr>
+      <th scope="col">Student ID</th>
+      {% comment %} <th scope="col">First Name </th>
+      <th scope="col">Last Name</th> {% endcomment %}
+      {% for atd  in dates  %}            
+        <th scope="col" > {{ atd.date }} </th>            
+      {% endfor %}
+      
+    </tr>
+  </thead>
+  <tbody id="p1">  
+  </tbody>
+    
+<script>
+var a="";
+{% for student in  studdata  %}
+  a=a+ '<tr> <th scope="row">'+{{ student.sid }} +'</th>'
+  {% for key ,value  in attendanceinfo.items  %}        
+    var i=parseInt({{ student.sid }});       
+          if({{ key }}==i ){                          
+          var val={{ value }}          
+          for (i = 0;i < val.length ;i++) {
+           a=a+'<td> '+val[i]+ ' </td>';
+            }
+          }          
+      {% endfor %}
+      a=a+  '</tr>'
+{% endfor %}
+{% comment %} alert(a); {% endcomment %}
+console.log(a)
+document.getElementById('p1').innerHTML =a;
+</script>
+  
+</table>                  
+</div>
+</main>
+                
+            
+{% endblock  %}

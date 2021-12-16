@@ -1,0 +1,162 @@
+{% extends '../sbase.html' %}
+{% block contentarea %}
+<style >
+.glyphicon { margin-right:5px; }
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+{
+    background: #e6eaf4;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}
+.error{
+    color:red
+}
+.success{
+    color:green
+}
+</style>
+
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                    <h1 class="mt-4">Courses
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#joincourse">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Join Course
+                    </button>
+
+                  
+                    </h1>
+                    {% if messages %}
+                        <ul class="messages">
+                        {% for message in messages %}
+                        
+                        <li style=""  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+{% comment %}                    
+temp comment
+{% for message in messages %}
+    {% if 'course added successfully' in message.message %}
+       <label class="success" style="align:center;color:green">course added successfully {{ message }}</label>
+       {{ break }}
+    {% endif %} 
+    
+{% endfor %}{% endcomment %}
+{% if data == none %}
+<center><label class='alert-danger ' style="font-size: 25px;" > No Data Found </label></center>
+{% endif %}
+{% if data != none %}
+{% for k in  data %}
+<div class="container">    
+    <div id="products" class="row list-group ">
+        <div class="item list-group-item">
+           
+                    <h4 class="group inner list-group-item-heading">
+                    <script>
+                    
+                    </script>
+                    
+                     Course Name  {{  k.cname   }} {% comment %} {% endcomment %}
+                    </h4>
+                    <p class="group inner list-group-item-text">
+                    
+                     Course Description {{ k.cinfo }} {% comment %} {% endcomment %}
+                    
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            {% comment %} <p class="lead">
+                                $21.000</p> {% endcomment %}
+                        </div>                        
+                        <div class="col-xs-12 col-md-3    float-xl-right">
+                          <a href='sviewmaterials/{{ k.cid }}'>  <input type="button" class="btn btn-success float-xl-right" name={{ k.0 }} style='width: 40%; margin-left: 50%; background-color: #007bff;float: right !important ;' value='View Course '></a>
+                        </div>
+                        <div class="col-xs-12 col-md-3    float-xl-right">
+                          <a href='sunenrolcourse/{{ k.cid }}'>  <input type="button" class="btn btn-danger float-xl-right" name={{ k.0 }} style='width: 40%; margin-left: 50%; background-color: #007bff;float: right !important ;' value='Unenroll Course '></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    
+{% endfor %}
+{% endif %}
+<form method="POST" action="joincourse.html"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal fade" id="joincourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">    
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Join Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label style="margin-left: 5%;"> Course ID</label><input style=" margin-left: 39%;" type="text" name="joincourse">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="Submit" class="btn btn-primary">Add course</button>
+            </div>    
+            </div>    
+        </div>
+    </div>
+</form>
+</div>
+                </main>             
+            
+{% endblock  %}

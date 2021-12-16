@@ -1,0 +1,43 @@
+{% extends '../sbase.html' %}
+{% block contentarea %}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+
+
+<form  method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+    </tr>
+    <tr>
+      <th scope="col">Subject ID</th>
+      <th scope="col">Subject Name </th>
+      <th scope="col">Attendance</th>
+      <th scope="col">Total Lectures</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  {% if data == "None" %}
+  <center><label class='alert-danger ' style="font-size: 25px;" > No Data Found </label></center>
+  {% endif %}
+  {% if data != "None" %}
+    {% for atd in attendance  %}
+    <tr>
+      <th scope="row"> {{ atd.cid }}  </th>
+      <td> {{ atd.sub }}  </td>
+      <td> {{ atd.present }}  </td>
+      <td> {{ atd.totallec }}  </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+</main>
+                
+            
+{% endblock  %}

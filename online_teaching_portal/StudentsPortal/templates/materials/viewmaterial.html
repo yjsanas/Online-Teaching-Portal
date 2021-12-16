@@ -1,0 +1,133 @@
+{% extends '../sbase.html' %}
+{% block contentarea %}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                    
+
+<link type="text/css" media="print" rel="stylesheet" href="https://cdn.jotfor.ms/css/printForm.css?3.3.21910" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5f6c4d5f89fb4a374f76b581"/>
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/payment/payment_styles.css?3.3.21910" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/payment/payment_feature.css?3.3.21910" />
+<style type="text/css" id="form-designer-style">
+
+.form-all{
+    margin: 20px auto !important;
+    max-width: none !important;
+
+}
+    /* Injected CSS Code */
+.form-label.form-label-auto {
+        
+        display: inline-block;
+        float: left;
+        text-align: left;
+      
+      }
+    /* Injected CSS Code */
+</style>
+      
+
+ {% csrf_token %}
+  
+  <div role="main" class="form-all">
+   {% for c in cnames %}     
+    <script>
+        {% comment %} testing part {% endcomment %}
+        </script>
+    <ul class="form-section page-section">
+      <li id="cid_32" class="form-input-wide" data-type="control_head">
+        <div class="form-header-group  header-large">
+          <div class="header-text httal htvam">
+            <h1 id="header_32" class="form-header" data-component="header">
+              View Material
+               
+            </h1>
+            
+
+          </div>
+        </div>
+      </li>     
+      <li class="form-line jf-required" data-type="control_dropdown" id="id_13">
+        <label class="form-label form-label-left form-label-auto" id="label_13" for="input_13">
+          Course name
+          <span class="form-required">
+            *
+          </span>
+        </label>
+        <div id="cid_13" class="form-input jf-required" data-layout="half">
+        {% for course in courses %}
+         <label>{{ course.cname }} </label>
+         {% endfor %}
+        </div>
+      </li>
+        <li class="form-line jf-required" data-type="control_textbox" id="id_3">
+        <label class="form-label form-label-left form-label-auto" id="label_3" for="input_3">
+          Material Title
+          <span class="form-required">
+            *
+          </span>
+        </label>
+        <div id="cid_3" class="form-input jf-required" data-layout="half">
+          <label type="text" id="materialTitle" name="materialTitle"  style="width:310px" size="310"   aria-labelledby="label_3" > {{ c.mtitle }} </label>           
+        </div>
+  
+      </li>
+
+
+
+
+      <li class="form-line" data-type="control_textarea" id="id_6">
+        <label class="form-label form-label-left form-label-auto" id="label_6" for="input_6"> Material description </label>
+        <div id="cid_6" class="form-input" data-layout="full">
+          <label id="materialDescription"  aria-labelledby="label_6" >{{ c.mdecription }}</label>
+        </div>
+      </li>
+      
+{% comment %}   
+        <iframe  src= '/media/{{ c.mdocs }}'  allowfullscreen></iframe>
+          
+        <embed src="/media/{{ c.mdocs }}" width="800px" height="2100px" />   {% endcomment %}
+        <li class="form-line jf-required" data-type="control_textbox" id="id_3">
+        <label class="form-label form-label-left form-label-auto" id="label_3" for="input_3">
+         Document name
+
+        </label>
+        {% if  c.mdocs != None  %}
+          <div id="cid_3" class="form-input jf-required" data-layout="half">
+            <label class="form-label form-label-left form-label-auto" >
+          {{ c.mdocs }}
+            </label>
+            <a href="/media/{{ c.mdocs }}" download> <label><i class="fa fa-download" aria-hidden="true"></i> Download</label></a>
+          </div>
+        {% else %}
+                <label class="form-label form-label-left form-label-auto" >
+                No Document
+                </label>
+        {% endif %}
+      </li>
+        
+        
+
+
+{% comment %} 
+      <li class="form-line" data-type="control_button" id="id_19">
+        <div id="cid_19" class="form-input-wide" data-layout="full">
+          <div data-align="left" class="form-buttons-wrapper form-buttons-left   jsTest-button-wrapperField">
+            <button id="input_19" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">
+            Update Maretial
+            </button>
+            
+          </div>
+        </div>
+      </li>      {% endcomment %}
+    </ul>
+    {% endfor %}
+  </div>
+                             </div>
+
+                </main>
+                
+            
+{% endblock  %}

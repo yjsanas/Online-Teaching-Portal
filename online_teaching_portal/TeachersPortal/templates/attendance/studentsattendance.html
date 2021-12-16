@@ -1,0 +1,74 @@
+{% extends '../tbase.html' %}
+{% block contentarea %}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+
+
+<form  action='/teacher/attendance.html' method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      {% for cname  in courses  %}
+      <th scope="col"  > Course Name: {{ cname.cname }} </th>
+      <th scope="col"  >ID <input type="text" name="cid" value={{ cname.cid }} hidden ><input type="text" name="cid1" value={{ cname.cid }} disabled ></th>
+      <th scope="col"  ><input type="date" id="date"  placeholder="yyyy-mm-dd" name="date"></th>
+      {% comment %} <script>
+      function myfunction(){
+        var a=document.getElementById("date").value;
+        alert(a);
+      }
+      </script> {% endcomment %}
+      <th scope="col"  >
+      <a href="/teacher/Upadateattendance/{{ cname.cid }}/2020-12-24 "> 
+      <button type="button" class="btn btn-primary float-right"><i class="fa fa-info-circle" aria-hidden="true"></i>Update attendance</button></a>
+      </th>
+      <th scope="col"  >
+      <a href="/teacher/fullattendance/{{ cname.cid }} "> 
+      <button type="button" class="btn btn-primary float-right"><i class="fa fa-info-circle" aria-hidden="true"></i>Full Report</button></a>
+      </th>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">First Name </th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Present</th>
+      <th scope="col">Absent</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if data == "None" %}
+  <center><label class='alert-danger ' style="font-size: 25px;" > No Data Found </label></center>
+  {% endif %}
+  {% if data != "None" %}
+    {% for student in students  %}
+    <tr>
+      <th scope="row">{{ student.Sid }} </th>
+      <td>{{ student.first_name }}</td>
+      <td> {{ student.last_name }} </td>
+      <td> <input type="radio" required value=1 name='{{ student.Sid }}'> </td>
+      <td> <input type="radio"  value=0 name='{{ student.Sid }}'> </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            {% comment %} <p class="lead">
+                                $21.000</p> {% endcomment %}
+                        </div>
+                        
+                        <div class="col-xs-12 col-md-6    ">
+                        <input type="Submit" class="btn btn-info " name="{{ k.0 }}" style='width: fit-content; float: right !important;' value='Submit Attendance '>
+                        </div>                        
+                    </div>
+</form>
+</div>
+</main>
+                
+            
+{% endblock  %}
